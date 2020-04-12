@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-app-deployment
+  labels:
+    app: demo-dashboard-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: dashboard-app-pod
+      app: demo-dashboard-app
+  template:
+    metadata:
+      name: dashboard-app-pod
+      labels:
+        name: dashboard-app-pod
+        app: demo-dashboard-app
+    spec:
+      serviceAccount: dashboard-sa
+      containers:
+        - name: my-kubernetes-dashboard
+          image: kodekloud/my-kubernetes-dashboard
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+
+
+
+
+
